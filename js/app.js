@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	var guessList = $('#guessList');
 	var answer = 0;
@@ -76,18 +75,10 @@ $(document).ready(function(){
 		newGame();
 	});
 
-
-
-
-
-
-
-
-
-
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
+
   	});
 
   	/*--- Hide information modal box ---*/
