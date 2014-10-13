@@ -13,7 +13,7 @@ $(document).ready(function(){
 		guessList.find("li").remove();
 		//set guess count to 0
 		count.text(0);
-		textInput.attr("maxlength","3");
+		textInput.attr("disabled", false);
 		feedback.text("Make your Guess!");
 		answered = undefined;
 	};
@@ -48,7 +48,7 @@ $(document).ready(function(){
 			//Correct!
 			feedback.text(guessList.find("li").last().text() + " is Correct!");
 			alert("You've guessed correctly, press +New Game to play again");
-			textInput.attr("maxlength","0");
+			textInput.attr("disabled", true);
 			return 1;
 		}
 	};
@@ -73,7 +73,6 @@ $(document).ready(function(){
 		}
 		textInput.val("");
 		return false;
-		event.preventDefault(); 
 	});
 
 
