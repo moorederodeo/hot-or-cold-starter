@@ -43,6 +43,7 @@ $(document).ready(function(){
 		else if (diff === 0) {
 			//Correct!
 			feedback.text("Correct!");
+			alert("You've guessed correctly, press +New Game to play again")
 			return 1;
 		}
 	};
