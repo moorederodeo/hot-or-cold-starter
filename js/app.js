@@ -4,6 +4,7 @@ $(document).ready(function(){
 	var textInput = $(this).find("input:text");
 	var count = $("#count");
 	var feedback = $("#feedback");
+	var answered = undefined;
 
 	var newGame = function () {
 		//generate random number
@@ -12,6 +13,9 @@ $(document).ready(function(){
 		guessList.find("li").remove();
 		//set guess count to 0
 		count.text(0);
+		textInput.attr("maxlength","3");
+		feedback.text("Make your Guess!");
+		answered = undefined;
 	};
 
 	var hotOrCold = function (guess) {
@@ -42,8 +46,9 @@ $(document).ready(function(){
 		}
 		else if (diff === 0) {
 			//Correct!
-			feedback.text("Correct!");
-			alert("You've guessed correctly, press +New Game to play again")
+			feedback.text(guessList.find("li").last().text() + " is Correct!");
+			alert("You've guessed correctly, press +New Game to play again");
+			textInput.attr("maxlength","0");
 			return 1;
 		}
 	};
@@ -57,15 +62,18 @@ $(document).ready(function(){
 		//grab number
 		var num = +textInput.val();
 		if (num >= 1 && num <= 100) {
-			//add number to list
-			guessList.append("<li>"+num+"</li>");
-			//tell if it's lesser, greater, right
-			hotOrCold(num);
-			//increase guess count
-			count.text(+count.text() + 1);
+			if (!answered) {
+				//add number to list
+				guessList.append("<li>"+num+"</li>");
+				//tell if it's lesser, greater, right
+				answered = hotOrCold(num);
+				//increase guess count
+				count.text(+count.text() + 1);
+			}
 		}
 		textInput.val("");
 		return false;
+		event.preventDefault(); 
 	});
 
 
